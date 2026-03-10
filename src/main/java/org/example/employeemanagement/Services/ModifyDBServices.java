@@ -171,7 +171,6 @@ public class ModifyDBServices {
     public Employee deleteEmployee(int employeeId){
         Employee employee=findByEmployeeId(employeeId);
         if(employee!=null) {
-
             employeesRepository.deleteByEmployeeId(employeeId);
             return employee;
         }

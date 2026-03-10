@@ -7,8 +7,10 @@ const phpFormatter = new Intl.NumberFormat('en-US', {
                     style: 'currency',
                     currency: 'PHP',
                 });
-function fetchBasedOnEndPoints(url, method) {
 
+function fetchBasedOnEndPoints(url, method) {
+fetchAverageSalary();
+fetchAverageAge();
     fetch(url, {
         method: method,// Specify the HTTP method
         credentials: "include"
@@ -24,7 +26,6 @@ function fetchBasedOnEndPoints(url, method) {
                 csrfInput.name = "_csrf";
                 csrfInput.value = csrfToken;
 
-
                 // 2. Apply to the object attribute
                 const salaryCurrency = phpFormatter.format(employee.salary);
 
@@ -37,7 +38,7 @@ function fetchBasedOnEndPoints(url, method) {
                     <td><button type="button" 
                     class="btn btn-outline-success" 
                         data-bs-toggle="modal" 
-                        data-employee-id="${salaryCurrency}"
+                        data-employee-id="${employee.employeeId}"
                         data-employee-name ="${employee.name}"
                         data-employee-dob ="${employee.dateOfBirth}"
                         data-employee-department="${employee.department}"

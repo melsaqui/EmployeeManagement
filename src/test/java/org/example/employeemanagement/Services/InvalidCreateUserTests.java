@@ -8,6 +8,7 @@ import org.example.employeemanagement.Repositories.EmployeesRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -30,6 +31,7 @@ public class InvalidCreateUserTests {
      * Method tests invalid birthday input in adding an employees and checks that the correct exception and exception message is thrown
      * */
     @Test
+    @Rollback
     public void testInvalidBdayAdd(){
 
         Exception exception = assertThrows(InvalidBirthDateException.class, () -> {
@@ -43,6 +45,7 @@ public class InvalidCreateUserTests {
      * Method tests invalid salary input in adding an employees and checks that the correct exception and exception message is thrown
      * */
     @Test
+    @Rollback
     public void testInvalidSalaryAdd(){
 
         Exception exception = assertThrows(InvalidSalaryException.class, () -> {
@@ -56,6 +59,7 @@ public class InvalidCreateUserTests {
      * Method tests that when an employee with an existing ID is added the correct exception is thrown with the correct message
      * */
     @Test
+    @Rollback
     public void testEmployeeExistAdd(){
         Employee beforeEmployee = employeesRepository.findByEmployeeId(104);
 
@@ -68,6 +72,7 @@ public class InvalidCreateUserTests {
     }
 
     @Test
+    @Rollback
     public void testCreateEmployeeBlanks(){
 
         Exception exception = assertThrows(Exception.class, () -> {

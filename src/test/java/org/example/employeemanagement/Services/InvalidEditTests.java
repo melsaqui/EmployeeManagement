@@ -8,6 +8,7 @@ import org.example.employeemanagement.Repositories.EmployeesRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -31,6 +32,7 @@ public class InvalidEditTests {
      * Tests that the correct exception is thrown when an invalid birthday is entered when editing a user
      * */
     @Test
+    @Rollback
     public void testInvalidBdayEdit(){
         Employee beforeEmployee = employeesRepository.findByEmployeeId(101);
 
@@ -52,6 +54,7 @@ public class InvalidEditTests {
      * Tests that the correct exception is thrown when an invalid salary is entered when editing a user
      * */
     @Test
+    @Rollback
     public void testInvalidSalaryEdit(){
         Employee beforeEmployee = employeesRepository.findByEmployeeId(101);
 
@@ -72,6 +75,7 @@ public class InvalidEditTests {
      * Tests that the correct exception is thrown when a non-existing user is being edited
      * */
     @Test
+    @Rollback
     public void testUserDoesNotExistEdit(){
 
         Exception exception = assertThrows(EmployeeDoesNotExistException.class, () -> {
@@ -82,6 +86,7 @@ public class InvalidEditTests {
 
     }
     @Test
+    @Rollback
     public void testUserBlanksEdit(){
 
         Exception exception = assertThrows(Exception.class, () -> {
